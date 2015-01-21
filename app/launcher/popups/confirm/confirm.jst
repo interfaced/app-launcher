@@ -1,0 +1,23 @@
+{{$ launcher.popups.templates.confirm.confirm }}
+
+{{* this.url string}}
+<div class="zb-center">
+	<div class="zb-center__cell">
+		<div class="zb-center__container">
+
+			<div class="p-confirm__container">
+				<div class="p-confirm__title">This application URL will be permanently deleted:</div>
+				<div class="p-confirm__name">{{=this.url}}</div>
+				<div class="p-confirm__buttons">
+					<div class="p-confirm-button _delete" data-component="{{% zb.ui.Button, {title: 'Delete'}, OKBtn }}">
+						<div class="p-confirm-button__icon">Delete</div>
+					</div>
+					<div class="p-confirm-button _back" data-component="{{% zb.ui.Button, {title: 'Cancel'}, cancelBtn }}">
+						<div class="p-confirm-button__icon">Cancel</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

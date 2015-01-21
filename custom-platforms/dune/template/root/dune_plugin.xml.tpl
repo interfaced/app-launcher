@@ -1,0 +1,26 @@
+<dune_plugin>
+  <name><%=pluginDirName%></name>
+  <caption><%=shortDesc%></caption>
+  <entry_points>
+    <entry_point>
+        <parent_media_url>root://applications</parent_media_url>
+        <media_url><%=pluginDirName%></media_url>
+        <caption><%=shortDesc%></caption>
+        <icon_url>plugin_file://logo.png</icon_url>
+        <actions>
+          <key_enter>
+            <type>launch_media_url</type>
+            <data>
+               <url>www://http://localhost/plugins/<%=pluginDirName%>/index.html:::fullscreen=1&amp;webapp_keys=1&amp;zoom_level=100&amp;overscan=0&amp;osd_size=1280x720&amp;input_handler=0&amp;engine_flags=1&amp;background_color=black</url>
+            </data>
+          </key_enter>
+        </actions>
+        <ip_address_required>yes</ip_address_required>
+        <show_by_default>yes</show_by_default>
+    </entry_point>
+  </entry_points>
+  <type>php</type>
+  <params>
+     <program>main.php</program>
+  </params>
+</dune_plugin>

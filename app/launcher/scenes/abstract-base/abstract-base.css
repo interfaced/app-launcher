@@ -1,0 +1,53 @@
+/* AbstractBase scene
+*******************************/
+
+.s-abstract-base-head {
+	background: linear-gradient(#fff, #f4f4f4);
+	position: relative;
+}
+	.s-abstract-base-head__title {
+		padding: 27px 0 0 55px;
+	}
+	.s-abstract-base-head__name {
+		font-size: 47px;
+		font-weight: bold;
+	}
+	.s-abstract-base-head__made {
+		font-size: 23px;
+		margin-left: 5px;
+	}
+	.s-abstract-base-head__notice {
+		width: 415px;
+		font-size: 24px;
+		line-height: 120px;
+		text-align: center;
+		color: #fff;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.s-abstract-base-head__notice._add {
+		background: #89c082;
+	}
+	.s-abstract-base-head__notice._remove {
+		background: #e78787;
+	}
+
+.s-abstract-base {}
+	.s-abstract-base .s-abstract-base-head {
+		height: 120px;
+	}
+	.s-abstract-base__content {
+		position: absolute;
+		top: 167px;
+		right: 55px;
+		bottom: 55px;
+		left: 55px;
+	}
+	.s-abstract-base .w-help-bar {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}

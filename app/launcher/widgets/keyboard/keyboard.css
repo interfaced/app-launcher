@@ -1,0 +1,54 @@
+/* Keyboard
+*******************************/
+
+.w-keyboard-item {
+	width: 60px;
+	height: 40px;
+	font-size: 32px;
+	line-height: 40px;
+	color: #00809c;
+	text-align: center;
+	border: 2px solid #00809c;
+	border-radius: 12px;
+}
+.w-keyboard-item._service {
+	width: 64px;
+	height: 44px;
+	line-height: 44px;
+	position: relative;
+	border: 0;
+}
+	.w-keyboard-item._service:after {
+		content: '';
+		position: absolute;
+		top: 1px;
+		right: 1px;
+		bottom: 1px;
+		left: 1px;
+		border: 1px solid #00809c;
+		border-radius: 10px;
+	}
+.w-keyboard-item._backspace,
+.w-keyboard-item._type {
+	width: 70px;
+}
+.w-keyboard-item._caps {
+	background: url(keyboard-item-caps.png) 50% 50% no-repeat;
+}
+.w-keyboard-item._active {
+	background-color: #00809c;
+	color: #fff;
+}
+
+.w-keyboard {}
+	.w-keyboard__line {
+		text-align: center;
+	}
+	.w-keyboard__center {
+		vertical-align: top;
+		display: inline-block;
+	}
+	.w-keyboard .w-keyboard-item {
+		float: left;
+		margin: 3px;
+	}

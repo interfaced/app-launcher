@@ -1,0 +1,14 @@
+{{$ launcher.widgets.templates.appList.appListItem }}
+
+{{* this.app launcher.services.AppList.AppView }}
+
+<div class="w-app-list-item">
+	<div class="w-app-list-item__wrap">
+		<div class="w-app-list-item__shad">
+			{{ if (!this.app.launchCount) { }}
+				<div class="w-app-list-item__new">new</div>
+			{{ } }}
+			<div class="w-app-list-item__title">{{-this.app.url}}</div>
+		</div>
+	</div>
+</div>

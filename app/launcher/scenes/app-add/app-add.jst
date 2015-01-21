@@ -1,0 +1,12 @@
+{{$ launcher.scenes.templates.appAdd.appAdd }}
+
+<div class="s-app-add-input">
+	<div class="s-app-add-input__title">New application URL:</div>
+	<div class="s-app-add-input__address zb-clear">
+		<div data-component="{{% launcher.widgets.Button, {}, submit }}">add</div>
+		<input class="s-app-add-input__input" data-component="{{% zb.ui.Input, {}, input }}" />
+	</div>
+	<div class="s-app-add-input__warning">Be careful while printing URL. AppLauncher cannot validate URL due to platform limitations.</div>
+</div>
+
+{{% launcher.widgets.Keyboard, {}, keyboard }}

@@ -1,0 +1,55 @@
+{{$ launcher.widgets.templates.keyboard.keyboard }}
+
+<div class="w-keyboard">
+	<div class="w-keyboard__layout zb-clear" data-component="{{% zb.ui.KeyboardLayout, {type: launcher.widgets.Keyboard.Types.ABC}, layoutAbc }}">
+		<div class="w-keyboard__line">
+			<div class="w-keyboard__center">
+				{{ "1 2 3 4 5 6 7 8 9 0 : .".split(" ").forEach(function(sym) { }}
+					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
+				{{ }); }}
+			</div>
+		</div>
+		<div class="w-keyboard__line">
+			<div class="w-keyboard__center">
+				{{ "? q w e r t y u i o p /".split(" ").forEach(function(sym) { }}
+					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
+				{{ }); }}
+			</div>
+		</div>
+		<div class="w-keyboard__line">
+			<div class="w-keyboard__center">
+				<div class="w-keyboard-item _service _caps" data-export-id="{{@itemsAbc[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.CAPS}}"></div>
+				{{ "a s d f g h j k l".split(" ").forEach(function(sym) { }}
+					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
+				{{ }); }}
+				<div class="w-keyboard-item _service" data-export-id="{{@itemsAbc[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.TYPE_NUM}}">123</div>
+			</div>
+		</div>
+		<div class="w-keyboard__line">
+			<div class="w-keyboard__center">
+				{{ "z x c v b n m".split(" ").forEach(function(sym) { }}
+					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
+				{{ }); }}
+				<div class="w-keyboard-item _service _backspace" data-export-id="{{@itemsAbc[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.BACKSPACE}}">&lt;</div>
+			</div>
+		</div>
+	</div>
+	<div class="w-keyboard__layout zb-clear" data-component="{{% zb.ui.KeyboardLayout, {type: launcher.widgets.Keyboard.Types.NUM}, layoutNum }}">
+		<div class="w-keyboard__line">
+			<div class="w-keyboard__center">
+				{{ "@ # $ % & * ( ) [ ] '".split(" ").forEach(function(sym) { }}
+					<div class="w-keyboard-item" data-export-id="{{@itemsNum[]}}">{{=sym}}</div>
+				{{ }); }}
+			</div>
+		</div>
+		<div class="w-keyboard__line">
+			<div class="w-keyboard__center">
+				{{ "- _ = + ~ , ; !".split(" ").forEach(function(sym) { }}
+					<div class="w-keyboard-item" data-export-id="{{@itemsNum[]}}">{{=sym}}</div>
+				{{ }); }}
+				<div class="w-keyboard-item _service" data-export-id="{{@itemsNum[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.TYPE_ABC}}">ABC</div>
+				<div class="w-keyboard-item _service _backspace" data-export-id="{{@itemsNum[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.BACKSPACE}}">&lt;</div>
+			</div>
+		</div>
+	</div>
+</div>

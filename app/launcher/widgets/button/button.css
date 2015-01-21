@@ -1,0 +1,36 @@
+/* Button widget
+*******************************/
+
+.w-button {
+	min-width: 40px;
+	height: 40px;
+	font-size: 32px;
+	line-height: 40px;
+	color: #00809c;
+	text-align: center;
+	padding: 0 10px;
+	border: 2px solid #00809c;
+	border-radius: 12px;
+}
+.w-button._service {
+	min-width: 64px;
+	height: 44px;
+	line-height: 44px;
+	position: relative;
+	border: 0;
+}
+	.w-button._service:after {
+		content: '';
+		position: absolute;
+		top: 1px;
+		right: 1px;
+		bottom: 1px;
+		left: 1px;
+		border: 1px solid #00809c;
+		border-radius: 10px;
+	}
+
+.w-button._active {
+	background-color: #00809c;
+	color: #fff;
+}

@@ -1,0 +1,58 @@
+/* AppList widget
+*******************************/
+
+.w-app-list-item {}
+	.w-app-list-item__wrap {
+		padding: 5px;
+	}
+	.w-app-list-item__shad {
+		position: relative;
+		padding: 4px 9px;
+		border: 1px solid transparent;
+		border-radius: 3px;
+	}
+	.w-app-list-item__new {
+		height: 22px;
+		background: #00809c;
+		font-size: 18px;
+		line-height: 20px;
+		color: #fff;
+		position: absolute;
+		top: 8px;
+		left: 9px;
+		padding: 0 8px;
+		border-radius: 6px;
+	}
+	.w-app-list-item__title {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		margin-left: 60px;
+	}
+
+.w-app-list._active .w-app-list-item._active {
+	color: #00809c;
+}
+	.w-app-list._active .w-app-list-item._active .w-app-list-item__shad {
+		border-color: #c3e1e8;
+		box-shadow: 0 0 8px #00809c;
+	}
+
+.w-app-list {
+	font-size: 24px;
+	position: relative;
+}
+	.w-app-list .w-base-list__wrap {
+		position: absolute !important;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding-right: 20px;
+	}
+	.w-app-list .w-base-list__slider {
+		display: block;
+	}
+	.w-app-list .w-scroll-bar {
+		right: 7px !important;
+	}

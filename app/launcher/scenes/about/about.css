@@ -1,0 +1,19 @@
+/* About scene
+*******************************/
+
+.s-about {}
+	.s-about__desc {
+		width: 680px;
+		font-size: 24px;
+		line-height: 35px;
+	}
+		.s-about__desc p {
+			text-indent: 20px;
+			margin-bottom: 10px;
+		}
+	.s-about__contacts {
+		background: url(about-contacts.jpg) no-repeat;
+		font-size: 18px;
+		padding-left: 265px;
+		margin-top: 60px;
+	}

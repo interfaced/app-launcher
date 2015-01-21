@@ -1,0 +1,12 @@
+.w-scroll-bar {
+	width: 1px !important;
+	background: #00809c !important;
+	top: 0 !important;
+	bottom: 0 !important;
+}
+	.w-scroll-bar__thumb {
+		width: 15px;
+		background: #00809c !important;
+		left: -7px !important;
+		border-radius: 7px;
+	}
