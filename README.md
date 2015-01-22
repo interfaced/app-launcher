@@ -1,6 +1,4 @@
--   [Документация на русском][1]
-
-    [1]: <README-RU.md>
+-   [Документация на русском](README-RU.md)
 
  
 
@@ -38,12 +36,10 @@ Platforms
 AppLauncer was tested on devices marked (+). It must also work on other devices
 listed below, but there can be problems of various types. If you run AppLauncher
 on devices without (+) mark, please write mail to
-[applauncher\@interfaced.ru][2] and inform us about both success and problems
+[applauncher@interfaced.ru](mailto:applauncher@interfaced.ru) and inform us about both success and problems
 you have.
 
-[2]: <applauncher@interfaced.ru>
 
- 
 
 AppLauncher supports:
 
@@ -79,13 +75,13 @@ AppLauncher supports:
 
 -   Eltex STB
 
-    -   NV-102
+    -   NV-102 (+)
 
     -   NV-300
 
 -   Mag STB (Aura STB)
 
-    -   Mag250
+        -   Mag250 (+)
 
     -   MAG254/255
 
@@ -107,26 +103,25 @@ AppLauncher supports:
 
     -   S-213
 
+Installation files
+------------------
+
+Installation files are available at [releases](https://github.com/ifaced/app-launcher/releases).
+
+
+Installation process
+--------------------
+
+Use following instructions to install AppLauncher:
+
+-   [Samsung Smart TV](docs/samsung-eng.md)
+
+-   [LG webOS Smart TV](docs/lg-webos-eng.md)
+
+-   [LG NetCast Smart TV](docs/lg-netcast-eng.md)
+
+-   [Dune HD STB](docs/dune-eng.md)
+
+-   [Eltex HD STB](docs/eltex-eng.md)
+
  
-
-Installation
-------------
-
-Use following instructions to install AppLauncher
-
--   [Samsung Smart TV][3]
-
-    [3]: <docs/samsung-eng.md>
-
--   [LG webOS Smart TV][4]
-
-    [4]: <docs/lg-webos-eng.md>
-
--   [LG NetCast Smart TV][5]
-
-    [5]: <docs/lg-netcast-eng.md>
-
--   [Dune HD STB][6] 	
-
-    [6]: <docs/dune-eng.md>
-

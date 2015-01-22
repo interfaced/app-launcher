@@ -31,7 +31,7 @@ Installation guide for LG webOS SmartTV
 -   Launch on TV
 
     1.  Unzip your application zip archive to folder
-        developer\\apps\\usr\\palm\\applications\\ of USB flash drive
+        `developer\apps\usr\palm\applications\` of USB flash drive
 
     2.  Plug flash drive into TV.
 

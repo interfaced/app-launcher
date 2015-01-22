@@ -48,7 +48,7 @@ application.
 
  
 
-### F-series (year 2013) (+)
+### F-series (year 2013)
 
 -   Login under "developer"
 
@@ -85,7 +85,7 @@ application.
 
  
 
-### E-series (year 2012) (+)
+### E-series (year 2012)
 
 -   Login under "developer"
 
