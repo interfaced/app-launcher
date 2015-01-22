@@ -81,7 +81,7 @@ AppLauncher supports:
 
 -   Mag STB (Aura STB)
 
-        -   Mag250 (+)
+    -   Mag250 (+)
 
     -   MAG254/255
 
