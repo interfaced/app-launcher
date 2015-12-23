@@ -2,6 +2,7 @@ goog.provide('launcher.Application');
 goog.require('launcher.BaseApplication');
 goog.require('launcher.services.AppList');
 goog.require('launcher.services.HelpBarItemFactory');
+goog.require('zb.ui.GoogleAnalytics');
 
 
 
@@ -12,6 +13,7 @@ goog.require('launcher.services.HelpBarItemFactory');
 launcher.Application = function() {
 	zb.console.setLevel(zb.console.Level.LOG | zb.console.Level.ERROR);
 	this.services = {
+		ga: null,
 		appList: null,
 		helpBarItemFactory: null
 	};
@@ -33,6 +35,21 @@ launcher.Application.prototype.canBack = function() {
  * @inheritDoc
  */
 launcher.Application.prototype.onReady = function() {
+	var gaId = '';
+	if (COMPILED) {
+		gaId = launcher.appConfig.googleAnalyticsId;
+
+		this._layerManager.on(this._layerManager.EVENT_TRANSITION_SUCCESS, function(eventName, transitionData) {
+			transitionData = /** @type {zb.LayerManager.TransitionData} */(transitionData);
+			var layer = transitionData.layer;
+			var pageName = '/' + /s-([a-z0-9\-]+)$/i.exec(layer.getCSSClassName())[1];
+			this.services.ga.sendPageview(pageName);
+		}.bind(this));
+	}
+
+	this.services.ga = new zb.ui.GoogleAnalytics(gaId, this.device, {
+		analyticsJS: 'analytics.js'
+	});
 	this.services.appList = new launcher.services.AppList(this.device.storage);
 	this.services.helpBarItemFactory = new launcher.services.HelpBarItemFactory;
 	this.setHomeScene('app-list');
@@ -45,8 +62,10 @@ launcher.Application.prototype.onReady = function() {
 launcher.Application.prototype.onStart = function() {
 	var apps = this.services.appList.getApps();
 	if (apps.length) {
+		this.services.ga.sendEvent('app', 'start');
 		this.home();
 	} else {
+		this.services.ga.sendEvent('app', 'first-start');
 		this.show('app-add', {});
 	}
 };
@@ -70,6 +89,7 @@ launcher.Application.prototype._appendScreenSizeClass = function() {
 
 /**
  * @type {{
+ *      ga: zb.ui.GoogleAnalytics,
  *      appList: launcher.services.AppList,
  *      helpBarItemFactory: launcher.services.HelpBarItemFactory
  * }}

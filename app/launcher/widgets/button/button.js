@@ -4,6 +4,7 @@ goog.require('zb.ui.Button');
 
 
 /**
+ * @deprecated as redundant
  * @inheritDoc
  * @extends {zb.ui.Button}
  * @constructor

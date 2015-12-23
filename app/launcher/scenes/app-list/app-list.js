@@ -16,26 +16,24 @@ launcher.scenes.AppList = function() {
 	this._addContainerClass('s-app-list');
 
 	this._appList = new zb.ui.DataList;
-	this._exported.appList.setDataList(this._appList, {
-		padding: this.COUNT_APPS_ON_PAGE - 1
+	this._exported.appList.setSource(this._appList, {
+		padding: this.COUNT_APPS_ON_PAGE
 	});
 	this._exported.appList.on(this._exported.appList.EVENT_CLICK, this._onAppClick.bind(this));
 
-	app.services.appList.on(app.services.appList.EVENT_APP_LIST_CHANGED, this._setApps.bind(this));
-	app.services.appList.on(app.services.appList.EVENT_APP_REMOVED, this._notice.showRemoved.bind(this._notice));
-	app.services.appList.on(app.services.appList.EVENT_APP_ADDED, this._notice.showAdded.bind(this._notice));
-};
-goog.inherits(launcher.scenes.AppList, launcher.scenes.AbstractBase);
-
-
-/**
- * @inheritDoc
- */
-launcher.scenes.AppList.prototype.afterDOMShow = function(state, data) {
-	goog.base(this, 'afterDOMShow', state, data);
+	app.services.appList.on(app.services.appList.EVENT_APP_REMOVED, this._onAppRemoved.bind(this));
+	app.services.appList.on(app.services.appList.EVENT_APP_ADDED, this._onAppAdded.bind(this));
+	app.services.appList.on(app.services.appList.EVENT_APP_CHANGED, this._onAppChanged.bind(this));
 
 	this._appList.setItems(app.services.appList.getApps());
+
+	// Prevent save/load state for app list.
+	delete this._namedWidgets['appList'];
+
+	this._configureThrobber();
+	this._updateHelpBar();
 };
+goog.inherits(launcher.scenes.AppList, launcher.scenes.AbstractBase);
 
 
 /**
@@ -59,9 +57,10 @@ launcher.scenes.AppList.prototype._createHelpBar = function() {
 	this._paginationHelpBarItem.hide();
 
 	helpBar.setItems([
-		factory.createOk(this._executeApp.bind(this)),
+		factory.createOk(this._executeCurrentApp.bind(this)),
 		factory.createBack(),
 		factory.createRemoveApp(this._removeApp.bind(this)),
+		factory.createEditApp(this._editApp.bind(this)),
 		factory.createAddApp(this._addApp.bind(this)),
 		factory.createAbout(),
 		this._paginationHelpBarItem
@@ -85,16 +84,25 @@ launcher.scenes.AppList.prototype._updateHelpBar = function() {
  * @private
  */
 launcher.scenes.AppList.prototype._onAppClick = function(eventName, appView) {
-	app.services.appList.executeApp(appView.url);
+	this._executeApp(appView.url);
 };
 
 
 /**
  * @private
  */
-launcher.scenes.AppList.prototype._executeApp = function() {
-	var application = this._exported.appList.getCurrentData();
-	app.services.appList.executeApp(application.url);
+launcher.scenes.AppList.prototype._executeCurrentApp = function() {
+	this._executeApp(this._getCurrentAppUrl());
+};
+
+
+/**
+ * @param {string} url
+ * @private
+ */
+launcher.scenes.AppList.prototype._executeApp = function(url) {
+	var promise = app.services.appList.executeApp(url);
+	this._exported.throbber.wait(promise);
 };
 
 
@@ -102,17 +110,17 @@ launcher.scenes.AppList.prototype._executeApp = function() {
  * @private
  */
 launcher.scenes.AppList.prototype._removeApp = function() {
-	var currentApp = this._appList.current();
-	if (!currentApp) {
+	var url = this._getCurrentAppUrl();
+	if (!url) {
 		return;
 	}
 
 	launcher.popups.Confirm
 		.asPromise({
-			url: currentApp.url
+			url: url
 		})
 		.then(function() {
-			app.services.appList.removeApp(currentApp.url);
+			app.services.appList.removeApp(url);
 			var appList = app.services.appList.getApps();
 			if (!appList.length) {
 				app.show('app-add', {});
@@ -130,12 +138,69 @@ launcher.scenes.AppList.prototype._addApp = function() {
 
 
 /**
- * @param {string} eventName
- * @param {Array.<launcher.services.AppList.AppView>} apps
  * @private
  */
-launcher.scenes.AppList.prototype._setApps = function(eventName, apps) {
-	this._appList.setItems(apps);
+launcher.scenes.AppList.prototype._editApp = function() {
+	var url = this._getCurrentAppUrl();
+	if (!url) {
+		return;
+	}
+
+	app.show('app-add', {url: url});
+};
+
+
+/**
+ * @return {string}
+ * @protected
+ */
+launcher.scenes.AppList.prototype._getCurrentAppUrl = function() {
+	var currentApp = this._appList.current();
+	if (!currentApp) {
+		return '';
+	}
+
+	return currentApp.url;
+};
+
+
+/**
+ * @param {string} eventName
+ * @param {number} index
+ * @param {string} url
+ * @private
+ */
+launcher.scenes.AppList.prototype._onAppRemoved = function(eventName, index, url) {
+	this._notice.showRemoved();
+	this._appList.removeAt(index);
+	this._updateHelpBar();
+};
+
+
+/**
+ * @param {string} eventName
+ * @param {number} index
+ * @param {string} url
+ * @private
+ */
+launcher.scenes.AppList.prototype._onAppAdded = function(eventName, index, url) {
+	var appItem = /** @type {!launcher.services.AppList.AppView} */(app.services.appList.getAppByIndex(index));
+	this._notice.showAdded();
+	this._appList.addAt(appItem, index);
+	this._appList.selectAt(index);
+	this._updateHelpBar();
+};
+
+
+/**
+ * @param {string} eventName
+ * @param {number} index
+ * @param {string} newUrl
+ * @param {string} oldUrl
+ * @private
+ */
+launcher.scenes.AppList.prototype._onAppChanged = function(eventName, index, newUrl, oldUrl) {
+	this._notice.showChanged();
 	this._updateHelpBar();
 };
 
@@ -176,6 +241,21 @@ launcher.scenes.AppList.prototype._showHidePaginationHelpBarItem = function(show
 
 
 /**
+ * @protected
+ */
+launcher.scenes.AppList.prototype._configureThrobber = function() {
+	var throbber = this._exported.throbber;
+	throbber.on(throbber.EVENT_START, function() {
+		this._exported.throbberContainer.style.display = 'block';
+	}.bind(this));
+	throbber.on(throbber.EVENT_STOP, function() {
+		this._exported.throbberContainer.style.display = 'none';
+	}.bind(this));
+	this._container.appendChild(this._exported.throbberContainer);
+};
+
+
+/**
 * @type {launcher.scenes.templates.appList.AppListOut}
 * @protected
 */
@@ -199,4 +279,4 @@ launcher.scenes.AppList.prototype._paginationHelpBarItem;
 /**
  * @const {number}
  */
-launcher.scenes.AppList.prototype.COUNT_APPS_ON_PAGE = 10;
+launcher.scenes.AppList.prototype.COUNT_APPS_ON_PAGE = 9;

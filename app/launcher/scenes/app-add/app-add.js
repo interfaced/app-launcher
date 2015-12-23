@@ -1,6 +1,7 @@
 goog.provide('launcher.scenes.AppAdd');
 goog.require('launcher.scenes.AbstractBase');
 goog.require('launcher.scenes.templates.appAdd.appAdd');
+goog.require('zb.html');
 
 
 
@@ -9,6 +10,8 @@ goog.require('launcher.scenes.templates.appAdd.appAdd');
  * @extends {launcher.scenes.AbstractBase}
  */
 launcher.scenes.AppAdd = function() {
+	this._url = null;
+
 	goog.base(this);
 	this._addContainerClass('s-app-add');
 	this.setDefaultWidget(this._exported.input);
@@ -18,21 +21,49 @@ launcher.scenes.AppAdd = function() {
 	}.bind(this));
 
 	this._exported.input.on(this._exported.input.EVENT_FINISH, this._onInputFinish.bind(this));
+	this._exported.input.setTheme(this._exported.input.THEME_NONE);
 
 	this._exported.keyboard.setInput(this._exported.input);
 
-	this.setNavigationRule(this._exported.keyboard, zb.Direction.RIGHT, null);
-	this.setNavigationRule(this._exported.keyboard, zb.Direction.LEFT, null);
+	this.setNavigationRule(this._exported.keyboard, zb.std.plain.Direction.Value.RIGHT, null);
+	this.setNavigationRule(this._exported.keyboard, zb.std.plain.Direction.Value.LEFT, null);
 };
 goog.inherits(launcher.scenes.AppAdd, launcher.scenes.AbstractBase);
 
 
 /**
+ * @param {launcher.scenes.AppAdd.Data} data
  * @inheritDoc
  */
 launcher.scenes.AppAdd.prototype.beforeDOMShow = function(state, data) {
 	goog.base(this, 'beforeDOMShow', state, data);
-	this._exported.input.setValue('http://');
+
+	if (state) {
+		return;
+	}
+
+	var url = 'http://';
+	var title = 'New application URL';
+	var savedUrl = null;
+
+	if (data.url !== undefined) {
+		url = data.url;
+		savedUrl = data.url;
+		title = 'Edit application URL';
+	}
+
+	this._url = savedUrl;
+	this._exported.input.setValue(url);
+	zb.html.text(this._exported.title, title);
+};
+
+
+/**
+ * @inheritDoc
+ */
+launcher.scenes.AppAdd.prototype.afterDOMShow = function(state, data) {
+	goog.base(this, 'afterDOMShow', state, data);
+	this._exported.input.showCaret(true);
 };
 
 
@@ -61,6 +92,17 @@ launcher.scenes.AppAdd.prototype._renderTemplate = function() {
 
 
 /**
+ * @inheritDoc
+ */
+launcher.scenes.AppAdd.prototype._processKey = function(zbKey, e) {
+	if (!this._exported.keyboard.processShortcutKey(zbKey)) {
+		return goog.base(this, '_processKey', zbKey, e);
+	}
+	return true;
+};
+
+
+/**
  * @param {string} eventName
  * @param {string} url
  * @private
@@ -68,7 +110,13 @@ launcher.scenes.AppAdd.prototype._renderTemplate = function() {
 launcher.scenes.AppAdd.prototype._onInputFinish = function(eventName, url) {
 	if (url) {
 		this._exported.input.setValue('', true);
-		app.services.appList.addApp(url);
+
+		if (this._url !== null) {
+			app.services.appList.changeApp(this._url, url);
+		} else {
+			app.services.appList.addApp(url);
+		}
+
 		if (app.canBack()) {
 			app.back();
 		} else {
@@ -95,3 +143,24 @@ launcher.scenes.AppAdd.prototype._pressBack = function() {
 * @protected
 */
 launcher.scenes.AppAdd.prototype._exported;
+
+
+/**
+* @type {?string}
+* @protected
+*/
+launcher.scenes.AppAdd.prototype._url;
+
+
+/**
+ * @typedef {{
+ *      url: (string|undefined)
+ * }}
+ */
+launcher.scenes.AppAdd.Input;
+
+
+/**
+ * @typedef {launcher.scenes.AppAdd.Input}
+ */
+launcher.scenes.AppAdd.Data;

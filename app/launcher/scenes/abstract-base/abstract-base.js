@@ -45,6 +45,16 @@ launcher.scenes.AbstractBase.prototype.processKey = function(zbKey, e) {
  */
 launcher.scenes.AbstractBase.prototype._createHelpBar = function() {
 	this._helpBar = new zb.ui.HelpBar;
+	this._helpBar.setOrder([
+		zb.device.input.Keys.ENTER,
+		zb.device.input.Keys.PAGE_UP,
+		zb.device.input.Keys.PAGE_DOWN,
+		zb.device.input.Keys.RED,
+		zb.device.input.Keys.GREEN,
+		zb.device.input.Keys.YELLOW,
+		zb.device.input.Keys.BLUE,
+		zb.device.input.Keys.BACK
+	]);
 	this._container.appendChild(this._helpBar.getContainer());
 	this.appendWidget(this._helpBar);
 };

@@ -3,35 +3,58 @@
 
 .w-help-bar-item {
 	background-repeat: no-repeat;
-	background-position: 0 50%;
-	line-height: 43px;
+	background-position: 4px 50%;
+	line-height: 30px;
+	border-radius: 5px;
 }
+
 .w-help-bar-item._back {
 	background-image: url(help-bar-item-back.png);
-	padding-left: 22px;
+	padding-left: 26px;
+	padding-right: 7px;
 }
+
+.w-help-bar-item._pagination,
+.w-help-bar-item._ok {
+	padding-left: 40px;
+	padding-right: 7px;
+}
+
 .w-help-bar-item._pagination {
 	background-image: url(help-bar-item-pagination.png);
-	padding-left: 24px;
 }
+
 .w-help-bar-item._ok {
 	background-image: url(help-bar-item-ok.png);
-	padding-left: 36px;
 }
+
+.w-help-bar-item._red,
+.w-help-bar-item._green,
+.w-help-bar-item._yellow,
+.w-help-bar-item._blue {
+	padding-left: 43px;
+	padding-right: 7px;
+}
+
 .w-help-bar-item._red {
 	background-image: url(help-bar-item-red.png);
-	padding-left: 39px;
 }
+
 .w-help-bar-item._green {
 	background-image: url(help-bar-item-green.png);
-	padding-left: 39px;
 }
+
+.w-help-bar-item._yellow {
+	background-image: url(help-bar-item-yellow.png);
+}
+
 .w-help-bar-item._blue {
 	background-image: url(help-bar-item-blue.png);
-	padding-left: 39px;
 }
+
 .w-help-bar-item._active {
-	color: #00809c;
+	background-color: #00809c;
+	color: #fff;
 }
 
 .w-help-bar {

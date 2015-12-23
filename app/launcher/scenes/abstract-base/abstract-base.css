@@ -12,7 +12,7 @@
 		font-size: 47px;
 		font-weight: bold;
 	}
-	.s-abstract-base-head__made {
+	.s-abstract-base-head__version {
 		font-size: 23px;
 		margin-left: 5px;
 	}
@@ -32,6 +32,9 @@
 	}
 	.s-abstract-base-head__notice._remove {
 		background: #e78787;
+	}
+	.s-abstract-base-head__notice._change {
+		background: #f8d56e;
 	}
 
 .s-abstract-base {}

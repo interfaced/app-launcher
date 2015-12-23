@@ -1,52 +1,57 @@
 {
   "name": "appLauncher",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AppLauncher allows running Smart TV and STB application avoiding standard installation process.",
   "homepage": "https://github.com/ifaced/app-launcher",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/ifaced/app-launcher.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ifaced/app-launcher.git"
   },
   "contributors": [
     {
-      "name" : "Andrew Motoshin",
-      "email" : "andrew@htmlhero.ru",
-      "url" : "http://htmlhero.ru/"
+      "name": "Andrew Motoshin",
+      "email": "andrew@htmlhero.ru",
+      "url": "http://htmlhero.ru/"
     },
     {
-      "name" : "Oleg Akinin",
-      "email" : "o.akinin@ifaced.ru"
+      "name": "Oleg Akinin",
+      "email": "o.akinin@ifaced.ru"
     },
     {
-      "name" : "Vyatcheslav Zaytcev",
-      "email" : "slava@ifaced.ru"
+      "name": "Vyatcheslav Zaytcev",
+      "email": "slava@ifaced.ru"
     },
     {
-      "name" : "Anuar Turenov",
-      "email" : "turenov@ifaced.ru"
+      "name": "Anuar Turenov",
+      "email": "turenov@ifaced.ru"
     },
     {
-      "name" : "Maxim Dymchenko",
-      "email" : "maximatorrus@ifaced.ru"
+      "name": "Maxim Dymchenko",
+      "email": "maximatorrus@ifaced.ru"
     },
     {
-      "name" : "Kirill Dronkin",
-      "email" : "kirilldronkin@ifaced.ru"
+      "name": "Kirill Dronkin",
+      "email": "kirilldronkin@ifaced.ru"
     },
     {
-      "name" : "Alex Babenko",
-      "email" : "babenkoalex@ifaced.ru"
+      "name": "Dmitry Zubarev",
+      "email": "zubrolet@interfaced.ru"
+    },
+    {
+      "name": "Alex Babenko",
+      "email": "babenkoalex@ifaced.ru"
     }
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "zombiebox": "0.0.176",
-    "zombiebox-platform-dune": "0.0.41",
-    "zombiebox-platform-eltex": "0.0.22",
-    "zombiebox-platform-lg": "0.0.11",
-    "zombiebox-platform-mag250": "0.0.26",
-    "zombiebox-platform-samsung": "0.0.26",
-    "zombiebox-platform-tvip": "0.0.10",
-    "zombiebox-platform-webos": "0.0.10"
+    "zombiebox": "0.0.193",
+    "zombiebox-extension-ui": "^0.1.2",
+    "zombiebox-platform-dune": "0.0.44",
+    "zombiebox-platform-eltex": "0.0.26",
+    "zombiebox-platform-lg": "0.0.14",
+    "zombiebox-platform-mag250": "0.0.35",
+    "zombiebox-platform-samsung": "0.0.40",
+    "zombiebox-platform-tvip": "0.0.12",
+    "zombiebox-platform-webos": "0.0.11"
   }
 }

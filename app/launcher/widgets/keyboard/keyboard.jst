@@ -4,16 +4,19 @@
 	<div class="w-keyboard__layout zb-clear" data-component="{{% zb.ui.KeyboardLayout, {type: launcher.widgets.Keyboard.Types.ABC}, layoutAbc }}">
 		<div class="w-keyboard__line">
 			<div class="w-keyboard__center">
-				{{ "1 2 3 4 5 6 7 8 9 0 : .".split(" ").forEach(function(sym) { }}
+				{{ "1 2 3 4 5 6 7 8 9 0".split(" ").forEach(function(sym) { }}
 					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
 				{{ }); }}
+				<div class="w-keyboard-item _red" data-export-id="{{@itemsAbc[]}}">&#46;</div>
+				<div class="w-keyboard-item _green" data-export-id="{{@itemsAbc[]}}">&#58;</div>
 			</div>
 		</div>
 		<div class="w-keyboard__line">
 			<div class="w-keyboard__center">
-				{{ "? q w e r t y u i o p /".split(" ").forEach(function(sym) { }}
+				{{ "? q w e r t y u i o p".split(" ").forEach(function(sym) { }}
 					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
 				{{ }); }}
+				<div class="w-keyboard-item _yellow" data-export-id="{{@itemsAbc[]}}">&#47;</div>
 			</div>
 		</div>
 		<div class="w-keyboard__line">
@@ -22,7 +25,9 @@
 				{{ "a s d f g h j k l".split(" ").forEach(function(sym) { }}
 					<div class="w-keyboard-item" data-export-id="{{@itemsAbc[]}}">{{=sym}}</div>
 				{{ }); }}
-				<div class="w-keyboard-item _service" data-export-id="{{@itemsAbc[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.TYPE_NUM}}">123</div>
+				<div class="w-keyboard-item _service _switch-keyboard" data-export-id="{{@itemsAbc[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.TYPE_NUM}}">
+					&#35;&#37;&#38;
+				</div>
 			</div>
 		</div>
 		<div class="w-keyboard__line">
@@ -47,7 +52,7 @@
 				{{ "- _ = + ~ , ; !".split(" ").forEach(function(sym) { }}
 					<div class="w-keyboard-item" data-export-id="{{@itemsNum[]}}">{{=sym}}</div>
 				{{ }); }}
-				<div class="w-keyboard-item _service" data-export-id="{{@itemsNum[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.TYPE_ABC}}">ABC</div>
+				<div class="w-keyboard-item _service _switch-keyboard" data-export-id="{{@itemsNum[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.TYPE_ABC}}">ABC</div>
 				<div class="w-keyboard-item _service _backspace" data-export-id="{{@itemsNum[]}}" data-keyboard-action="{{=launcher.widgets.Keyboard.Actions.BACKSPACE}}">&lt;</div>
 			</div>
 		</div>

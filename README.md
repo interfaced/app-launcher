@@ -8,7 +8,7 @@ AppLauncher
 AppLauncher allows running Smart TV and STB application avoiding standard
 installation process.
 
-AppLauncher lets to create list of applications’ URLs to run. URLs are sorted
+AppLauncher lets to create list of applications URLs to run. URLs are sorted
 according to last activities: adding or launching.
 
 Install AppLauncher once and easily run dozens of your applications at Smart TV
@@ -18,11 +18,11 @@ or STB.
 
 Important details:
 
-1.  You have to run web-server to provide application's URL to run. AppLauncher
+1.  You have to run web-server to provide application URL to run. AppLauncher
     works only with URLs, not ipk or zip files!
 
-2.  AppLauncher could not check applications’ URLs before running them due to
-    platforms' limitations. Be careful while entering URL. Improper URL can
+2.  AppLauncher could not check applications URLs before running them due to
+    platforms limitations. Be careful while entering URL. Improper URL can
     cause Smart TV/STB hang-up. Reboot your Smart TV/STB in this situation.
 
 3.  You can use remote control digital buttons to enter digits into URL instead
@@ -36,7 +36,7 @@ Platforms
 AppLauncer was tested on devices marked (+). It must also work on other devices
 listed below, but there can be problems of various types. If you run AppLauncher
 on devices without (+) mark, please write mail to
-[applauncher@interfaced.ru](mailto:applauncher@interfaced.ru) and inform us about both success and problems
+[applauncher@interfaced.tv](mailto:applauncher@interfaced.tv) and inform us about both success and problems
 you have.
 
 
@@ -77,7 +77,7 @@ AppLauncher supports:
 
     -   NV-102 (+)
 
-    -   NV-300
+    -   NV-300 (+)
 
 -   Mag STB (Aura STB)
 

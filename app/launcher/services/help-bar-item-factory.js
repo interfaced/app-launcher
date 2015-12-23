@@ -55,9 +55,22 @@ launcher.services.HelpBarItemFactory.prototype.createRemoveApp = function(opt_ha
  * @param {Function=} opt_handler
  * @return {zb.ui.HelpBarItem}
  */
+launcher.services.HelpBarItemFactory.prototype.createEditApp = function(opt_handler) {
+	return this._createHelpBarItem({
+		label: 'edit selected',
+		keys: [zb.device.input.Keys.YELLOW],
+		cssClass: '_yellow'
+	}, opt_handler);
+};
+
+
+/**
+ * @param {Function=} opt_handler
+ * @return {zb.ui.HelpBarItem}
+ */
 launcher.services.HelpBarItemFactory.prototype.createAddApp = function(opt_handler) {
 	return this._createHelpBarItem({
-		label: 'add application',
+		label: 'add URL',
 		keys: [zb.device.input.Keys.GREEN],
 		cssClass: '_green'
 	}, opt_handler);
@@ -84,7 +97,7 @@ launcher.services.HelpBarItemFactory.prototype.createAbout = function(opt_handle
  */
 launcher.services.HelpBarItemFactory.prototype.createPagination = function(opt_handler) {
 	return this._createHelpBarItem({
-		label: 'page up/page down',
+		label: 'page up/down',
 		keys: [zb.device.input.Keys.PAGE_UP, zb.device.input.Keys.PAGE_DOWN],
 		cssClass: '_pagination'
 	}, opt_handler);

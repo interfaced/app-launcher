@@ -28,6 +28,34 @@ launcher.widgets.Keyboard.prototype._renderTemplate = function() {
 
 
 /**
+ * @param {zb.device.input.Keys} zbKey
+ * @return {boolean}
+ */
+launcher.widgets.Keyboard.prototype.processShortcutKey = function(zbKey) {
+	var zbKeys = zb.device.input.Keys;
+	var zbCharKey = app.device.input.keyToPrintableChar(zbKey);
+
+	switch (zbKey) {
+		case zbKeys.RED:
+			this._setSymbol('.');
+			return true;
+		case zbKeys.GREEN:
+			this._setSymbol(':');
+			return true;
+		case zbKeys.YELLOW:
+			this._setSymbol('/');
+			return true;
+		default:
+			if (zbCharKey !== null) {
+				this._setSymbol(zbCharKey);
+				return true;
+			}
+			return false;
+	}
+};
+
+
+/**
  * @inheritDoc
  */
 launcher.widgets.Keyboard.prototype._handleClick = function(action) {

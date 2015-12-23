@@ -11,6 +11,26 @@
 	border: 2px solid #00809c;
 	border-radius: 12px;
 }
+
+.w-keyboard-item._yellow,
+.w-keyboard-item._red,
+.w-keyboard-item._green {
+	color: #fff;
+	border-color: transparent;
+}
+
+.w-keyboard-item._yellow {
+	background-color: #e5d202;
+}
+
+.w-keyboard-item._red {
+	background-color: #d10b0b;
+}
+
+.w-keyboard-item._green {
+	background-color: #0f8200;
+}
+
 .w-keyboard-item._service {
 	width: 64px;
 	height: 44px;
@@ -28,16 +48,23 @@
 		border: 1px solid #00809c;
 		border-radius: 10px;
 	}
+
 .w-keyboard-item._backspace,
 .w-keyboard-item._type {
 	width: 70px;
 }
+
 .w-keyboard-item._caps {
 	background: url(keyboard-item-caps.png) 50% 50% no-repeat;
 }
+
 .w-keyboard-item._active {
 	background-color: #00809c;
 	color: #fff;
+}
+
+.w-keyboard-item._switch-keyboard {
+	font-size: 24px;
 }
 
 .w-keyboard {}

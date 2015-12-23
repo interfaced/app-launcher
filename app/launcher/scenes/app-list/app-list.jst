@@ -1,3 +1,7 @@
 {{$ launcher.scenes.templates.appList.appList }}
 
 {{% launcher.widgets.AppList, {}, appList }}
+
+<div class="s-app-list__throbber-container" data-export-id="{{@throbberContainer}}">
+	{{% zb.ui.Throbber, {}, throbber }}
+</div>

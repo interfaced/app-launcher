@@ -35,7 +35,7 @@
 }
 	.w-app-list._active .w-app-list-item._active .w-app-list-item__shad {
 		border-color: #c3e1e8;
-		box-shadow: 0 0 8px #00809c;
+		box-shadow: 0 0 8px 1px #00809c;
 	}
 
 .w-app-list {

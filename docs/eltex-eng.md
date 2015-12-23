@@ -1,9 +1,11 @@
 Installation guide for Eltex STB
 --------------------------------
 
+### Eltex STB NV-10x
+
 1.  Copy folder with application to USB flash drive.
 
-2.  Download libstbbrowser.so from http://download.eltex-media.ru/nv/nv300/plugins/libstbbrowser.so and copy it to folder with application.
+2.  Download libstbbrowser.so from http://download.eltex-media.ru/nv/nv102/plugins/libstbbrowser.so and copy it to folder with application.
 
 3.  Plug USB flash drive into STB.
 
@@ -15,15 +17,47 @@ Installation guide for Eltex STB
 
 5.  Enter commands:
 
-    `mount -o remount,rw /sdk`
+    ```
+	mount -o remount,rw /sdk
+	cd /sdk/qt-install-4.7.0/STBGUI_PLUGIN/
+	cp -r /mnt/stb/local/$flash_drive/$path_to_appLauncher  appLauncher
+	sync
+	reboot
+	```
+    
+    where
 
-    `cd /sdk/qt-install-4.7.0/STBGUI_PLUGIN/`
+    `$flash_drive` - flash drive's name in the system,
 
-    `cp -r /mnt/stb/local/$flash_drive/$path_to_appLauncher  appLauncher`
+    `$path_to_appLauncher` - path to the distrib folder.
 
-    `sync`
+6.  Application will be available in the main menu.
 
-    `reboot`
+### Eltex STB NV-300
+
+1.  Copy folder with application to USB flash drive.
+
+2.  Download libstbbrowser.so from http://download.eltex-media.ru/nv/nv300/plugins/libstbbrowser.so and copy it to folder with application.
+
+3.  Plug USB flash drive into STB.
+
+4.  Connect to STB via SSH:
+
+    **login:** root,
+
+    **password:** is generated from STB serial number:
+	- Generator for Windows http://download.eltex-media.ru/nv/psswdgen/PSSWDGen_win.zip
+	- Generator for Linux http://download.eltex-media.ru/nv/psswdgen/PSSWDGen-linux-x86_64
+
+5.  Enter commands:
+
+    ```
+	mount -o remount,rw /sdk
+	cd /usr/local/bin/stbgui/
+	cp -r /mnt/stb/local/$flash_drive/$path_to_appLauncher  appLauncher
+	sync
+	reboot
+	```
     
     where
 

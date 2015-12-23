@@ -78,7 +78,7 @@ AppLauncher поддерживает:
 
     -   NV-102 (+)
 
-    -   NV-300
+    -   NV-300 (+)
 
 -   Mag STB (Aura STB)
 

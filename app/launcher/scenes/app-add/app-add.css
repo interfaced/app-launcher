@@ -1,17 +1,30 @@
 /* AppAdd scene
 *******************************/
 
+.s-app-add-input-button {
+	background: url(app-add-input.png) 50% 50% no-repeat;
+	border: 2px solid #00809c;
+	border-radius: 12px;
+}
+
+.s-app-add-input-button._active {
+	background-color: #00809c;
+	background-image: url(app-add-input-active.png);
+}
+
 .s-app-add-input {}
 	.s-app-add-input__title {
-		text-align: center;
 		font-size: 23px;
 		font-weight: bold;
+		text-align: center;
 	}
 	.s-app-add-input__address {
 		position: relative;
 		margin-top: 8px;
 	}
-	.s-app-add-input .w-button {
+	.s-app-add-input .s-app-add-input-button {
+		width: 60px;
+		height: 40px;
 		position: absolute;
 		top: 0;
 		left: 100%;
@@ -19,30 +32,29 @@
 	}
 	.s-app-add-input__input {
 		width: 100%;
-		font-size: 23px;
+		font-size: 24px;
+		padding: 7px 0;
 		box-sizing: border-box;
-		padding: 7px;
-		padding-right: 0;
-		border: 1px solid #022a33;
+		outline: 1px solid #022a33;
 	}
 	.s-app-add-input__input._active {
-		box-shadow: 0 0 5px #00809c;
-	}
-	.s-app-add-input__input:focus {
-		outline: none;
+		box-shadow: 0 0 8px 2px #00809c;
 	}
 	.s-app-add-input__warning {
 		font-size: 18px;
 		color: #00809c;
 		margin-top: 17px;
 	}
+	.s-app-add-input .w-zbui-div-input .w-zbui-div-input__wrapper {
+		margin-left: 7px;
+	}
 
 .s-app-add {}
 	.s-app-add .s-app-add-input {
 		position: absolute;
 		top: 50px;
-		left: 200px;
 		right: 200px;
+		left: 200px;
 	}
 	.s-app-add .w-keyboard {
 		position: absolute;

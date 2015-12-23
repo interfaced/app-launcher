@@ -34,25 +34,40 @@ launcher.widgets.Notice.prototype.isFocusable = function() {
 /**
  */
 launcher.widgets.Notice.prototype.showAdded = function() {
-	this.open(true);
+	this.open(launcher.widgets.Notice.State.ADDED);
 	zb.html.text(this._container, 'URL added');
 };
 
 
 /**
  */
+launcher.widgets.Notice.prototype.showChanged = function() {
+	this.open(launcher.widgets.Notice.State.CHANGED);
+	zb.html.text(this._container, 'URL edited');
+};
+
+
+/**
+ */
 launcher.widgets.Notice.prototype.showRemoved = function() {
-	this.open(false);
+	this.open(launcher.widgets.Notice.State.REMOVED);
 	zb.html.text(this._container, 'URL removed');
 };
 
 
 /**
- * @param {boolean} isAdded
+ * @param {launcher.widgets.Notice.State} state
  */
-launcher.widgets.Notice.prototype.open = function(isAdded) {
-	zb.html.updateClassName(this._container, launcher.widgets.Notice.State.ADDED, isAdded);
-	zb.html.updateClassName(this._container, launcher.widgets.Notice.State.REMOVED, !isAdded);
+launcher.widgets.Notice.prototype.open = function(state) {
+	var allClasses = Object.keys(launcher.widgets.Notice.State)
+		.map(function(key) {
+			return launcher.widgets.Notice.State[key];
+		});
+
+	allClasses.forEach(function(cssClass) {
+		zb.html.updateClassName(this._container, cssClass, cssClass === state);
+	}, this);
+
 	zb.html.show(this._container);
 	this._timeout.restart();
 };
@@ -77,5 +92,6 @@ launcher.widgets.Notice.prototype._timeout;
 */
 launcher.widgets.Notice.State = {
 	ADDED: '_add',
-	REMOVED: '_remove'
+	REMOVED: '_remove',
+	CHANGED: '_change'
 };

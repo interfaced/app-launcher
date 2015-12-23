@@ -6,5 +6,6 @@ goog.provide('launcher.appConfig');
  * @struct
  */
 launcher.appConfig = {
+	googleAnalyticsId: 'UA-29756002-6',
 	noticeTime: 5000
 };

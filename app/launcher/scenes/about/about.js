@@ -1,6 +1,6 @@
 goog.provide('launcher.scenes.About');
-goog.require('launcher.scenes.AbstractBase');
 goog.require('launcher.scenes.templates.about.about');
+goog.require('launcher.scenes.AbstractBase');
 
 
 
@@ -11,12 +11,14 @@ goog.require('launcher.scenes.templates.about.about');
 launcher.scenes.About = function() {
 	goog.base(this);
 	this._addContainerClass('s-about');
+
+	this._createHelpBar();
 };
 goog.inherits(launcher.scenes.About, launcher.scenes.AbstractBase);
 
 
 /**
- * @inheritDoc
+ * @protected
  */
 launcher.scenes.About.prototype._createHelpBar = function() {
 	goog.base(this, '_createHelpBar');
@@ -30,16 +32,14 @@ launcher.scenes.About.prototype._createHelpBar = function() {
 };
 
 
-/**
- * @inheritDoc
- */
+/** @inheritDoc */
 launcher.scenes.About.prototype._renderTemplate = function() {
 	return launcher.scenes.templates.about.about(this._getTemplateData(), this._getTemplateOptions());
 };
 
 
 /**
-* @type {launcher.scenes.templates.about.AboutOut}
-* @protected
-*/
+ * @type {launcher.scenes.templates.about.AboutOut}
+ * @protected
+ */
 launcher.scenes.About.prototype._exported;
