@@ -1,6 +1,6 @@
 {
   "name": "appLauncher",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AppLauncher allows running Smart TV and STB application avoiding standard installation process.",
   "homepage": "https://github.com/ifaced/app-launcher",
   "repository": {
@@ -36,10 +36,6 @@
     {
       "name": "Dmitry Zubarev",
       "email": "zubrolet@interfaced.ru"
-    },
-    {
-      "name": "Alex Babenko",
-      "email": "babenkoalex@ifaced.ru"
     }
   ],
   "license": "Apache-2.0",
@@ -52,6 +48,7 @@
     "zombiebox-platform-mag250": "0.0.35",
     "zombiebox-platform-samsung": "0.0.40",
     "zombiebox-platform-tvip": "0.0.12",
-    "zombiebox-platform-webos": "0.0.11"
+    "zombiebox-platform-webos": "0.0.11",
+    "zombiebox-platform-tizen": "0.0.16"
   }
 }

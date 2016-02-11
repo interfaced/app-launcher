@@ -20,7 +20,5 @@
 	print('<script>' + inlineScripts.join('</script>\n\t<script>') + '</script>');
 	} %>
 </head>
-<body>
-
-</body>
+<body></body>
 </html>

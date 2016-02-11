@@ -6,3 +6,10 @@
 	background: #fff;
 	color: #000;
 }
+
+.embedding {
+	overflow:hidden;
+	position: absolute;
+	height: 100%;
+	width: 100%
+}

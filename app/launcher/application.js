@@ -80,10 +80,19 @@ launcher.Application.prototype._backOnEmptyHistory = function() {
 
 
 /**
+ * Rewrites original method to restricts current resolution to HD
  * @inheritDoc
  */
 launcher.Application.prototype._appendScreenSizeClass = function() {
-	this._body.classList.add('zb-hd');
+	var currentResolution = zb.device.ResolutionInfo[this.device.info.osdResolutionType()];
+	var maxSupportedResolution = zb.device.ResolutionInfo[zb.device.Resolution.HD];
+
+	if (!currentResolution || currentResolution.width > maxSupportedResolution.width) {
+		currentResolution = maxSupportedResolution;
+	}
+
+	this._body.classList.add('zb-' + currentResolution.name);
+	this._appendViewportSize(currentResolution);
 };
 
 

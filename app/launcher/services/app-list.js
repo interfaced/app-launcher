@@ -1,4 +1,5 @@
 goog.provide('launcher.services.AppList');
+goog.require('zb.http');
 
 
 
@@ -86,18 +87,23 @@ launcher.services.AppList.prototype.removeApp = function(url) {
  */
 launcher.services.AppList.prototype.executeApp = function(url) {
 	this._logEvent('app-execute');
-	var app = this._apps[this._findAppByUrl(url)];
+	var appToExecute = this._apps[this._findAppByUrl(url)];
 
-	if (app) {
-		app.launchCount++;
-		this._touchApp(app);
+	if (appToExecute) {
+		appToExecute.launchCount++;
+		this._touchApp(appToExecute);
 		this._saveApps();
 	}
 
-	return new Promise(function(resolve, reject) {
-		// never resolve promise while new page is not loaded
-		this._replaceUrl(url);
+	return new Promise(function() {
+		// Never resolve promise while new page is not loaded
+		if (app.isDeviceTizen()) {
+			this._openEmbedding(url);
+		} else {
+			this._replaceUrl(url);
+		}
 	}.bind(this));
+
 };
 
 
@@ -223,7 +229,63 @@ launcher.services.AppList.prototype._compareTime = function(appA, appB) {
  * @private
  */
 launcher.services.AppList.prototype._replaceUrl = function(url) {
-	location.href = url;
+	/**
+	 * @param {Object.<string, *>} from
+	 * @param {Object.<string, *>} to
+	 * @return {Object.<string, *>}
+	 */
+	 function mergeObjects(from, to) {
+		Object
+			.keys(from || {})
+			.forEach(function(key) {
+				to[key] = from[key];
+			});
+
+		return to;
+	}
+
+	var urlParts = url.split('?');
+	var mergedQueryParams = mergeObjects(
+		zb.http.decodeParams(window.location.search.replace('?', '')),
+		zb.http.decodeParams(urlParts[1] || '')
+	);
+
+	location.href = zb.http.buildQueryString(urlParts[0], mergedQueryParams);
+};
+
+
+/**
+ * @param {string} url
+ * @private
+ */
+launcher.services.AppList.prototype._openEmbedding = function(url) {
+	var embedding = document.createElement('iframe');
+	var launcher = document.getElementsByClassName('zb-body')[0];
+
+	embedding.style.display = 'none';
+	embedding.setAttribute('frameborder', '0');
+	embedding.setAttribute('class', 'embedding');
+	embedding.src = url;
+
+	document.body.appendChild(embedding);
+
+	embedding.contentWindow.addEventListener('DOMContentLoaded', function() {
+		launcher.style.display = 'none';
+		embedding.style.display = 'block';
+		embedding.focus();
+	});
+
+	try {
+		if (app.device.proxyContext) {
+			app.device.proxyContext(embedding.contentWindow);
+		}
+	} catch (error) {
+		if (error instanceof DOMException) {
+			zb.console.error('CSP blocked access to embedding context');
+		}
+
+		document.body.removeChild(embedding);
+	}
 };
 
 
